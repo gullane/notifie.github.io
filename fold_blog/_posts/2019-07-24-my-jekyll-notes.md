@@ -31,7 +31,7 @@ bundle exec jekyll serve
 ````
 
 Note that subsequently to run Jekyll, you only need to type:
-```
+```terminal
 jekyll serve
 ````
 
@@ -109,8 +109,39 @@ defaults:
 * Put the files in a sub-folder if you want - Jekyll will find them
 
 
+# Installing stuff
+
+Change stuff in "Gemfile" - then you run
+```
+bundle install
+```
+
+
 # Themes
-Check what theme you have - it's in the _config.yaml file. I's probably:
+Check what theme you currently have. It's defined in the _config.yaml file. It's probably:
 ```
    theme: minima
+```
+... which is the one Jekyll sets up by default. Nothing wrong with it - it's neat, responsive (handles page widths, mobile ...)
+
+Find a new theme by going to [rubygems.org](https://rubygems.org/) and search for jekyll-theme.
+Or go to [jekyllthemes.org](https://jekyllthemes.org)
+
+Once you have a theme name, add it to the Gemfile
+```
+# comment this out :
+#gem "minima", "~> 2.0"
+# add your new one
+gem "jekyll-theme-cayman" # ... for example
+
+```
+After Gemfile changed :
+```
+bundle install
+bundle exec jekyll serve
+``
+
+Note to see where something's installed:
+```
+bundle info <name>
 ```

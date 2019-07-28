@@ -28,7 +28,7 @@ disqus:
 # Build settings
 markdown: kramdown
 theme: minima
-#theme: jekyll-theme-hydeout
+#theme: hydrogen
 plugins:
   - jekyll-feed
 

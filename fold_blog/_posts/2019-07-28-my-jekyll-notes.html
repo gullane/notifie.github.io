@@ -1,0 +1,218 @@
+---
+layout: post
+title:  "Notes For Jekyll Starters"
+categories: fold jekyl
+---
+
+<div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+    .block {
+        background: #f7f7f7;
+        padding: 30px;
+        margin-bottom: 30px;
+        border-radius: 10px 10px 0 0;
+    }
+    .title {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #FFF;
+        padding: 0;
+        margin: -10px -30px 20px -30px;;
+        padding: 0 30px 15px 30px;
+    }
+    pre, code {
+        background: #dadada;
+    }
+</style>
+
+<h4>
+    Some notes I made when using Jekyll for the first time
+</h4>
+
+<div class="block">
+    <div class="title">Setting up</div>
+
+    Jekyll is written in Ruby so install it with gem. See what you already have installed / check your versions.
+    <pre><code>
+ruby -v
+gem -v
+    </code></pre>
+
+    Install Jekyll (on Mac)
+
+    <pre><code>
+gem install jekyll bundler
+jekyll -v
+    </code></pre>
+
+</div>
+
+
+<div class="block">
+    <div class="title">Create your first Jekyll project go into the created folder</div>
+
+    <pre><code>
+jekyll new my_blog
+cd my_blog
+    </code></pre>
+
+    Jekyll will create a server so you can see the web pages:
+
+    <pre><code>
+bundle exec jekyll serve
+    </code></pre>
+
+    Note that subsequently to run Jekyll, you only need to type:
+
+    <pre><code>
+jekyll serve
+    </code></pre>
+
+    You'll need to type the bundle exec .. if you change the _config.yml file
+</div>
+
+
+<div class="block">
+
+    <div class="title">Project Structure</div>
+
+    <ul>
+        <li>_posts - your posts - change stuff here</li>
+        <ul>
+            <li>Put files in the _post folder</li>
+            <li>These can be .md or .html</li>
+        </ul>
+        <li>_site - this is generated, don't touch it</li>
+        <li>_config.yml - setup stuff - if you change this, restart jekyll with bundle exec jekyll serve</li>
+    </ul>
+
+</div>
+
+
+<div class="block">
+
+    <div class="title">Front matter (aka meta-info at the top of pages)</div>
+    <ul>
+        <li>At the top of all pages</li>
+        <li>defaut values can be set in the _config.yaml file</li>
+        <li>starts and ends with 3 dashes</li>
+    </ul>
+
+    ```yaml
+    ---
+    title: fred
+    layout: [post | page]
+    permalink: /about/
+    permalink: /:categories/:year/:month/:day/title
+    ---
+    ```
+    * permalink
+    * allows you to define the url path
+    * by default it's
+    ```yaml
+    permalink: /:categories/:year/:month/:day/title
+    ```
+    ... so no need to write that
+    * can add bits like :
+    <pre><code>
+permalink: /:categories/:year.html
+    </code></pre>
+
+    * good to define a permalink for the blogs - in case change category accidentally for example
+
+    Default values for the Front Matter is set in the _config.yaml file.
+    then you don't have to put the same stuff at the top of all pages (for exape laout: post)
+
+    # custom front matter
+    defaults:
+    -
+        scope:
+        path: "" # an empty string here means all files in the project
+        type: "posts" # to only apply these defauts to the "_post" folder pages
+        values:
+        layout: "post"
+        title: "My Title"   # not useful for the tile in fact...
+
+
+</div>
+
+
+<div class="block">
+
+    <div class="title">Draft files</div>
+
+
+    * make a folder called _drafts
+    * put a file in it (no need to give it a date-prefix)
+    * it won't be visible on the generate _site folder
+    * to see it: run the server: jekyll serve --draft
+    * it will take the latest update date
+    * when it's ok, move it to the _posts folder
+
+    # Page types
+
+    * Normal pages
+    * For example About page
+    * these **do not** show up in your posts
+    * Blog posts
+
+
+    # Non-blog pages
+
+    * in the _Front matter_ no date is necessary
+    * Put the files in a sub-folder if you want - Jekyll will find them
+
+</div>
+
+
+
+<div class="block">
+
+    <div class="title">Installing stuff</div>
+
+    Change stuff in "Gemfile" - then you run
+    <pre><code>
+bundle install
+    </code></pre>
+</div>
+
+
+<div class="block">
+
+     <div class="title">Themes</div>
+
+
+    Check what theme you currently have. It's defined in the _config.yaml file. It's probably:
+    <pre><code>
+        theme: minima
+    </code></pre>
+
+    ... which is the one Jekyll sets up by default. Nothing wrong with it - it's neat, responsive (handles page widths, mobile ...)
+
+    Find a new theme by going to [rubygems.org](https://rubygems.org/) and search for jekyll-theme.
+    Or go to [jekyllthemes.org](https://jekyllthemes.org)
+
+    Once you have a theme name, add it to the Gemfile
+    <pre><code>
+# comment this out :
+#gem "minima", "~> 2.0"
+# add your new one
+gem "jekyll-theme-cayman" # ... for example
+    </code></pre>
+
+    After Gemfile changed :
+    <pre><code>
+bundle install
+bundle exec jekyll serve
+    </code></pre>
+
+    Note to see where something's installed:
+    <pre><code>
+bundle info <name>
+    </code></pre>
+
+</div>
+</div>
